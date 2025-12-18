@@ -750,7 +750,7 @@ require('lazy').setup({
   },
 
   { -- Autoformat
-    'stevearc/conform.nvim',
+    'bryantpark04/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
@@ -764,12 +764,6 @@ require('lazy').setup({
       },
     },
     opts = {
-      formatters = {
-        palantir_java_format = {
-          command = 'palantir-java-format',
-          args = { '--palantir', '-' },
-        },
-      },
       notify_on_error = false,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -788,7 +782,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         typescript = { 'dprint' },
-        java = { 'palantir_java_format' },
+        java = { 'palantir-java-format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
