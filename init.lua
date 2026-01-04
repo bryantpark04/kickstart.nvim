@@ -750,7 +750,7 @@ require('lazy').setup({
   },
 
   { -- Autoformat
-    'bryantpark04/conform.nvim',
+    'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
