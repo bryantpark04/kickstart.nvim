@@ -1,11 +1,3 @@
--- @bryantpark04
-
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-
--- @bryantpark04
-
 --[[
 
 =====================================================================
@@ -106,11 +98,15 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -137,7 +133,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = 'number'
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -695,7 +691,21 @@ require('lazy').setup({
         tsgo = {},
         eslint = {},
         pyrefly = {},
-        jdtls = {},
+        jdtls = {
+          root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew' }, { upward = true })[1]),
+          settings = {
+            java = {
+              import = {
+                gradle = {
+                  enabled = true,
+                  wrapper = {
+                    enabled = true,
+                  },
+                },
+              },
+            },
+          },
+        },
 
         lua_ls = {
           -- cmd = { ... },
