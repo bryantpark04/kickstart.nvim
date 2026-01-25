@@ -713,6 +713,7 @@ require('lazy').setup({
             },
           },
         },
+        clangd = {},
 
         lua_ls = {
           -- cmd = { ... },
