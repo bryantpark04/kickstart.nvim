@@ -695,7 +695,7 @@ require('lazy').setup({
 
         tsgo = {},
         eslint = {},
-        pyrefly = {},
+        ruff = {},
         jdtls = {
           root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew' }, { upward = true })[1]),
           settings = {
@@ -799,7 +799,7 @@ require('lazy').setup({
         typescript = { 'dprint' },
         java = { 'palantir-java-format' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'ruff' },
+        python = { 'ruff_format' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
