@@ -581,6 +581,8 @@ require('lazy').setup({
           --  the definition of its *type*, not where it was *defined*.
           map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
+          map('gre', vim.diagnostic.open_float, 'View LSP [E]rror')
+
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
           ---@param method vim.lsp.protocol.Method
@@ -682,7 +684,6 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         -- gopls = {},
-        -- basedpyright = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -695,9 +696,15 @@ require('lazy').setup({
 
         tsgo = {},
         eslint = {},
-        ruff = {},
+        basedpyright = {},
         jdtls = {
-          root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew' }, { upward = true })[1]),
+          root_dir = function(fname)
+            return vim.fs.dirname(vim.fs.find({ 'gradlew', 'build.gradle', 'build.gradle.kts', '.git' }, {
+              path = fname,
+              upward = true,
+            })[1])
+          end,
+          cmd = { 'jdtls', '-Xmx4g', '-XX:+UseG1GC' },
           settings = {
             java = {
               import = {
