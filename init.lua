@@ -236,13 +236,6 @@ do
   -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
   -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
-  -- Treat .py.jinja2 files as Python
-  vim.filetype.add {
-    pattern = {
-      ['.*%.py%.jinja2'] = 'python',
-    },
-  }
-
   -- [[ Basic Autocommands ]]
   --  See `:help lua-guide-autocommands`
 
@@ -932,8 +925,11 @@ do
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
   -- Ensure basic parsers are installed
-  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python' }
   require('nvim-treesitter').install(parsers)
+
+  vim.filetype.add { extension = { jinja2 = 'jinja2' } }
+  vim.treesitter.language.register('python', 'jinja2')
 
   ---@param buf integer
   ---@param language string
